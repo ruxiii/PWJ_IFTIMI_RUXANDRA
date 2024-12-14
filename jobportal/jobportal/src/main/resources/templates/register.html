@@ -21,7 +21,7 @@
             href="https://fonts.googleapis.com/css?family=Montserrat"
             rel="stylesheet"
     />
-    <meta charset="ISO-8859-1"/>
+    <meta charset="ISO-8859-1" />
     <title>Sign Up</title>
 </head>
 
@@ -50,6 +50,21 @@
                                 method="post"
                         >
                             <div class="box-body bozero mx2p">
+                                <!-- Error message display -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div
+                                                    th:if="${error}"
+                                                    class="alert alert-danger"
+                                                    role="alert"
+                                            >
+                                                <p th:text="${error}"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End error message display -->
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
@@ -113,7 +128,12 @@
 </section>
 </body>
 
-<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
-<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-
+<script
+        type="text/javascript"
+        th:src="@{/webjars/jquery/jquery.min.js}"
+></script>
+<script
+        type="text/javascript"
+        th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"
+></script>
 </html>
