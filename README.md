@@ -19,7 +19,7 @@
 
 - Relations between entities:
     - Recruiter profile : Users => 1:1
-    - Users type : Users => 1:M
+    - Users type : Users => 1:M (an UserType can have many users; many users can have one UserType)
     - Users : Job post activity => 1:M
     - Users : Job seeker profile => 1:M
     - Job seeker profile : Job seeker apply => 1:M
@@ -30,3 +30,7 @@
     - Job post activity : Job location => M:1
     - Job post activity : Job company => M:1
     ![alt text](image.png)
+
+- Database entities:
+    - Users: basic information about an user
+    - UsersType: an user role
