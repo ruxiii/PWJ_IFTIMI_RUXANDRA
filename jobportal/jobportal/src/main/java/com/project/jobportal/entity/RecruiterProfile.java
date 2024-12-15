@@ -34,4 +34,7 @@ public class RecruiterProfile {
     public RecruiterProfile(Users user){
         this.userId = user;
     }
+
+    public RecruiterProfile() {
+    }
 }
