@@ -46,4 +46,20 @@ public class JobPostActivity {
     private Date postedDate;
 
     private String jobTitle;
+
+    public Boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
+    }
+
+    public Boolean getIsSaved() {
+        return isSaved;
+    }
+
+    public void setIsSaved(Boolean isSaved) {
+        this.isSaved = isSaved;
+    }
 }
