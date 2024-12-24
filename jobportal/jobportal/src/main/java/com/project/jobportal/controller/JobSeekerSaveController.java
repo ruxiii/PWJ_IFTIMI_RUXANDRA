@@ -35,27 +35,25 @@ public class JobSeekerSaveController {
         this.jobPostActivityService = jobPostActivityService;
         this.jobSeekerSaveService = jobSeekerSaveService;
     }
-
-//    TODO: NU MERGE
-//    @PostMapping("job-details/save/{id}")
-//    public String save(@PathVariable("id") int id, JobSeekerSave jobSeekerSave) {
-//
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        if (!(authentication instanceof AnonymousAuthenticationToken)) {
-//            String currentUsername = authentication.getName();
-//            Users user = usersService.findByEmail(currentUsername);
-//            Optional<JobSeekerProfile> seekerProfile = jobSeekerProfileService.getOne(user.getUserId());
-//            JobPostActivity jobPostActivity = jobPostActivityService.getOne(id);
-//            if (seekerProfile.isPresent() && jobPostActivity != null) {
-//                jobSeekerSave.setJob(jobPostActivity);
-//                jobSeekerSave.setUserId(seekerProfile.get());
-//            } else {
-//                throw new RuntimeException("User not found");
-//            }
-//            jobSeekerSaveService.addNew(jobSeekerSave);
-//        }
-//        return "redirect:/dashboard/";
-//    }
+    
+    @PostMapping("job-details/save/{id}")
+    public String save(@PathVariable("id") int id, JobSeekerSave jobSeekerSave) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            String currentUsername = authentication.getName();
+            Users user = usersService.findByEmail(currentUsername);
+            Optional<JobSeekerProfile> seekerProfile = jobSeekerProfileService.getOne(user.getUserId());
+            JobPostActivity jobPostActivity = jobPostActivityService.getOne(id);
+            if (seekerProfile.isPresent() && jobPostActivity != null) {
+                jobSeekerSave = new JobSeekerSave();
+                jobSeekerSave.setUserId(seekerProfile.get());
+                jobSeekerSave.setJob(jobPostActivity);
+                jobSeekerSaveService.addNew(jobSeekerSave);
+            } else {
+                throw new RuntimeException("User not found");
+            }
+        }     return "redirect:/dashboard/";
+    }
 
     @GetMapping("saved-jobs/")
     public String savedJobs(Model model) {
