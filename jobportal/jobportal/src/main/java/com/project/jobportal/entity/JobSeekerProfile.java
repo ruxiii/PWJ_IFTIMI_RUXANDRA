@@ -1,8 +1,7 @@
 package com.project.jobportal.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import org.apache.catalina.User;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.List;
 
@@ -18,13 +17,23 @@ public class JobSeekerProfile {
     @MapsId
     private Users userId;
 
+    @NotBlank(message = "First name is mandatory")
     private String firstName;
+
+    @NotBlank(message = "Last name is mandatory")
     private String lastName;
+
     private String city;
+
     private String state;
+
     private String country;
+
     private String workAuthorization;
+
     private String employmentType;
+
+    @NotBlank(message = "Resume is mandatory")
     private String resume;
 
     @Column(nullable = true, length = 64)

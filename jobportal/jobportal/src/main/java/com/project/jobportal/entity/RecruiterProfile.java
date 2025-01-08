@@ -1,7 +1,8 @@
 package com.project.jobportal.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "recruiter_profile")
@@ -15,17 +16,23 @@ public class RecruiterProfile {
     @MapsId
     private Users userId;
 
+    @NotBlank(message = "First name is required")
     private String firstName;
+
+    @NotBlank(message = "Last name is required")
     private String lastName;
+
     private String city;
 
     private String state;
 
     private String country;
 
+    @NotBlank(message = "Company name is required")
     private String company;
 
     @Column(nullable = true, length = 64)
+    @NotBlank(message = "Profile photo is required")
     private String profilePhoto;
 
     public RecruiterProfile() {

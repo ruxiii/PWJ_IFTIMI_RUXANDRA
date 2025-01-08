@@ -1,10 +1,10 @@
 package com.project.jobportal.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import java.util.Date;
 
 @Entity
@@ -32,15 +32,23 @@ public class JobPostActivity {
     @Transient
     private Boolean isSaved;
 
-    @Length(max = 10000)
+    @NotBlank(message = "Description of the job cannot be blank")
+    @Length(max = 10000, message = "Description cannot exceed 10000 characters")
     private String descriptionOfJob;
 
+    @NotBlank(message = "Job type is required")
     private String jobType;
+
+    @NotBlank(message = "Salary is required")
     private String salary;
+
+    @NotBlank(message = "Remote status is required")
     private String remote;
 
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date postedDate;
+
+    @NotBlank(message = "Job title is required")
     private String jobTitle;
 
     public JobPostActivity() {
