@@ -16,10 +16,8 @@ public class RecruiterProfile {
     @MapsId
     private Users userId;
 
-    @NotBlank(message = "First name is required")
     private String firstName;
 
-    @NotBlank(message = "Last name is required")
     private String lastName;
 
     private String city;
@@ -28,11 +26,9 @@ public class RecruiterProfile {
 
     private String country;
 
-    @NotBlank(message = "Company name is required")
     private String company;
 
     @Column(nullable = true, length = 64)
-    @NotBlank(message = "Profile photo is required")
     private String profilePhoto;
 
     public RecruiterProfile() {

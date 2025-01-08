@@ -21,21 +21,17 @@ import java.util.Optional;
 public class JobSeekerApplyController {
 
     private final JobPostActivityService jobPostActivityService;
-    private final UsersService usersService;
+
     private final JobSeekerApplyService jobSeekerApplyService;
+
     private final JobSeekerSaveService jobSeekerSaveService;
-    private final RecruiterProfileService recruiterProfileService;
-    private final JobSeekerProfileService jobSeekerProfileService;
 
 
     @Autowired
-    public JobSeekerApplyController(JobPostActivityService jobPostActivityService, UsersService usersService, JobSeekerApplyService jobSeekerApplyService, JobSeekerSaveService jobSeekerSaveService, RecruiterProfileService recruiterProfileService, JobSeekerProfileService jobSeekerProfileService) {
+    public JobSeekerApplyController(JobPostActivityService jobPostActivityService, JobSeekerApplyService jobSeekerApplyService, JobSeekerSaveService jobSeekerSaveService) {
         this.jobPostActivityService = jobPostActivityService;
-        this.usersService = usersService;
         this.jobSeekerApplyService = jobSeekerApplyService;
         this.jobSeekerSaveService = jobSeekerSaveService;
-        this.recruiterProfileService = recruiterProfileService;
-        this.jobSeekerProfileService = jobSeekerProfileService;
     }
 
     @GetMapping("job-details-apply/{id}")

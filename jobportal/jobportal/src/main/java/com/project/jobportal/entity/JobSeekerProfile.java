@@ -17,10 +17,8 @@ public class JobSeekerProfile {
     @MapsId
     private Users userId;
 
-    @NotBlank(message = "First name is mandatory")
     private String firstName;
 
-    @NotBlank(message = "Last name is mandatory")
     private String lastName;
 
     private String city;
@@ -33,7 +31,6 @@ public class JobSeekerProfile {
 
     private String employmentType;
 
-    @NotBlank(message = "Resume is mandatory")
     private String resume;
 
     @Column(nullable = true, length = 64)
