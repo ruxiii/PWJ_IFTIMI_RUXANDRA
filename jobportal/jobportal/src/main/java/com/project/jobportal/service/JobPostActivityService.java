@@ -7,6 +7,7 @@ import com.project.jobportal.repository.JobCompanyRepository;
 import com.project.jobportal.repository.JobLocationRepository;
 import com.project.jobportal.repository.JobPostActivityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -31,6 +32,7 @@ public class JobPostActivityService {
 
     private final JobSeekerSaveService jobSeekerSaveService;
 
+    @Lazy
     private final JobSeekerApplyService jobSeekerApplyService;
 
     @Autowired
