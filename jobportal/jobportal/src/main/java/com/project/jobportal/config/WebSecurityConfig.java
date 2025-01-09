@@ -25,7 +25,8 @@ public class WebSecurityConfig {
         this.customAuthenticationSuccessHandler = customAuthenticationSuccessHandler;
     }
 
-    private final String[] publicUrl = {"/",
+    private final String[] publicUrl = {
+            "/",
             "/global-search/**",
             "/register",
             "/register/**",
@@ -38,7 +39,15 @@ public class WebSecurityConfig {
             "/*.css",
             "/*.js",
             "/*.js.map",
-            "/fonts**", "/favicon.ico", "/resources/**", "/error"};
+            "/fonts**",
+            "/favicon.ico",
+            "/resources/**",
+            "/error",
+            // Swagger URLs
+            "/swagger-ui/**",
+            "/v3/api-docs/**",
+            "/v3/api-docs.yaml"
+    };
 
     @Bean
     protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -50,20 +59,21 @@ public class WebSecurityConfig {
             auth.anyRequest().authenticated();
         });
 
-        http.formLogin(form->form.loginPage("/login").permitAll()
+        http.formLogin(form -> form
+                        .loginPage("/login").permitAll()
                         .successHandler(customAuthenticationSuccessHandler))
-                .logout(logout-> {
+                .logout(logout -> {
                     logout.logoutUrl("/logout");
                     logout.logoutSuccessUrl("/");
-                }).cors(Customizer.withDefaults())
-                .csrf(csrf->csrf.disable());
+                })
+                .cors(Customizer.withDefaults())
+                .csrf(csrf -> csrf.disable());
 
         return http.build();
     }
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
-
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         authenticationProvider.setUserDetailsService(customUserDetailsService);
